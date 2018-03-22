@@ -1,0 +1,157 @@
+<?php
+/**
+ * App类
+ * User: 郭冠常
+ * Date: 2018/3/10
+ * Time: 10:00
+ */
+namespace core\packet;
+use core\Container;
+class App implements \ArrayAccess
+{
+
+    const VERSION = '1.0';
+
+    /**
+     * 是否开启调试模式
+     * @var bool
+     */
+    protected $isDebug = true;
+
+    /**
+     * 应用开始时间
+     * @var float
+     */
+    protected $beginTime;
+
+    /**
+     * 应用内存初始占用(PHP进程占用)
+     * @var int
+     */
+    protected $beginMem;
+
+    /**
+     * 应用根目录
+     * @var string
+     */
+    protected $rootPath;
+
+    /**
+     * 应用命名空间
+     * @var string
+     */
+    protected $namespace = 'app';
+
+    /**
+     * 应用类库目录
+     * @var string
+     */
+    protected $appPath;
+
+    /**
+     * 运行时目录
+     * @var string
+     */
+    protected $runtimePath;
+
+    /**
+     * 配置目录
+     * @var string
+     */
+    protected $configPath;
+
+    /**
+     * 应用调度实例
+     * @var Dispatch
+     */
+    protected $dispatch;
+
+    /**
+     * 容器实例
+     * @var Container
+     */
+    protected $container;
+
+    /**
+     * App构架方法
+     * @param string $appPath
+     */
+    public function __construct($appPath = '')
+    {
+        $this->appPath = $appPath ?: __DIR__ . '../../../apps/';
+        $this->container = Container::getInstance();
+    }
+
+    /**
+     * 是否开启调试
+     * @return bool
+     */
+    public function isDebug()
+    {
+        return $this->isDebug;
+    }
+
+    /**
+     *
+     */
+    public function run()
+    {
+        $this->initialize();
+    }
+
+    public function send()
+    {
+
+    }
+
+    /**
+     * 初始化应用
+     */
+    public function initialize()
+    {
+        $this->beginTime = microtime(true);
+        $this->beginMem = memory_get_usage();
+        $this->rootPath = dirname(realpath($this->appPath)) . '/';
+        $this->runtimePath = $this->rootPath . 'runtime/';
+        $this->configPath = $this->rootPath . 'config/';
+    }
+
+    /**
+     * 判断标识或类是否在容器
+     * @param mixed $key
+     * @return bool
+     */
+    public function offsetExists($key)
+    {
+        return $this->container->bound($key);
+    }
+
+    /**
+     * 设置一个类或者标识到容器
+     * @param mixed $key
+     * @return object
+     */
+    public function offsetGet($key)
+    {
+        return $this->container->make($key);
+    }
+
+    /**
+     * 绑定标识或者类到容器
+     * @param mixed $key
+     * @param mixed $value
+     */
+    public function offsetSet($key, $value)
+    {
+        $this->container->bind($key, $value);
+    }
+
+    /**
+     * 删除容器绑定的标识或者类
+     * @param mixed $key
+     */
+    public function offsetUnset($key)
+    {
+        $this->container->unset($key);
+    }
+}

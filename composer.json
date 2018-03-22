@@ -1,0 +1,11 @@
+{
+  "name": "ABPhp",
+  "description": "the a simple framework",
+  "type": "framework",
+  "license": "Apache-2.0",
+  "authors": "adcbguo(email:adcbguo@qq.com)",
+  "require": {
+    "php": ">=7.0.1",
+    "phpunit": ">=6.5.7"
+  }
+}
