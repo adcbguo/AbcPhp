@@ -32,7 +32,7 @@ class Handle
     public function report(Exception $exception)
     {
         if (!$this->isIgnoreReport($exception)) {
-            if (Container::get('app')->isDebug()) {
+            if (Container::get('core\\packet\\App')->isDebug()) {
                 $data = [
                     'file' => $exception->getFile(),
                     'line' => $exception->getLine(),
@@ -47,7 +47,7 @@ class Handle
                 ];
                 $log = "[{$data['code']}][{$data['message']}]";
             }
-            Container::get('log')->record($log, 'error');
+            Container::get('core\\packet\\Log')->record($log, 'error');
         }
     }
 
@@ -96,7 +96,7 @@ class Handle
      */
     public function convertExceptionToResponse($exception)
     {
-        return Response::create();
+        return Container::get('core\\packet\\Response')->create();
     }
 
     /**

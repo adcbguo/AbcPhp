@@ -6,9 +6,9 @@
  * Time: 18:06
  */
 namespace core;
-use Core\packet\Config;
-use Core\packet\Db;
-use Core\packet\Log;
+use core\packet\Config;
+use core\packet\Db;
+use core\packet\Log;
 use core\packet\App;
 use core\packet\Page;
 

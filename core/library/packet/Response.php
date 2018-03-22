@@ -9,7 +9,7 @@ namespace core\packet;
 class Response
 {
     public function send(){
-
+        return '';
     }
 
     /**
@@ -18,8 +18,8 @@ class Response
      * @param string $type
      * @return Response
      */
-    public function create($content, $type = 'json')
+    public function create($content = '', $type = 'json')
     {
-
+        return $this;
     }
 }

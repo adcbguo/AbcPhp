@@ -14,7 +14,7 @@ class Config
      * @param string|array|int $default
      * @return array|string|int
      */
-    public function get($name,$default)
+    public function get($name, $default = '')
     {
         return [];
     }

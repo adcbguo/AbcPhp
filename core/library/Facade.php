@@ -57,8 +57,9 @@ class Facade
 
     /**
      * 带参数实例化当前Facade类
-     * @access public
+     * @param array ...$args
      * @return object
+     * @throws \ReflectionException
      */
     public static function instance(...$args)
     {
@@ -71,6 +72,7 @@ class Facade
      * @param array $args
      * @param bool $newInstance
      * @return object
+     * @throws \ReflectionException
      */
     public static function make($class = '', $args = [], $newInstance = false)
     {
@@ -92,7 +94,7 @@ class Facade
      */
     public static function bind($name, $class = null)
     {
-        if (__CLASS__ == static::class) {
+        if (__CLASS__ != static::class) {
             self::__callStatic('bind', func_get_args());
         }
 

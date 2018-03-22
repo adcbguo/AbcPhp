@@ -6,6 +6,7 @@
  * Time: 19:50
  */
 namespace core;
+use core\facade\Config;
 use core\packet\exception\ErrorException;
 use core\packet\exception\Handle;
 use Closure;
@@ -49,7 +50,7 @@ class Error
      * 异常处理
      * @param Exception|Throwable $exception
      */
-    public function appException($exception)
+    public static function appException($exception)
     {
         //php7版本降级解决
         if (!$exception instanceof Exception) {
@@ -65,7 +66,7 @@ class Error
      * 程序终止处理
      * @return void
      */
-    public function appShutdown()
+    public static function appShutdown()
     {
 
     }
@@ -78,7 +79,7 @@ class Error
     {
         static $handle;
         if (!$handle) {
-            $class = Container::get('config')->get('exception_handle');
+            $class = Container::get('core\\packet\\Config')->get('exception_handle');
             if ($class && is_string($class) && class_exists($class) && is_subclass_of($class, '\\core\\packet\\exception\\Handle')) {
                 $handle = new $class;
             } else {

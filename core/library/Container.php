@@ -103,15 +103,19 @@ class Container
      */
     public function make($abstract, $var = [], $newInstance = false)
     {
-        if ($this->instances[$abstract]) {
+        if ($var === true) {
+            $newInstance = true;
+            $var = [];
+        }
+        if (isset($this->instances[$abstract]) && !$newInstance) {
             return $this->instances[$abstract];
         } else {
-            if ($this->bind[$abstract]) {
+            if (isset($this->bind[$abstract])) {
                 $concrete = $this->bind[$abstract];
                 if ($concrete instanceof Closure) {
                     $object = $this->invokeFunction($abstract, $var);
                 } else {
-                    $object = $this->make($abstract, $var, $newInstance);
+                    $object = $this->make($concrete, $var, $newInstance);
                 }
             } else {
                 $object = $this->invokeClass($abstract, $var);
@@ -147,7 +151,7 @@ class Container
         $reflect = new ReflectionClass($class);
         $constructor = $reflect->getConstructor();
         if ($constructor) {
-            $args = $this->bindParams($reflect, $vars);
+            $args = $this->bindParams($constructor, $vars);
         } else {
             $args = [];
         }

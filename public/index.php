@@ -9,7 +9,7 @@
 namespace core;
 
 //引用框架基础文件
-require_once(__DIR__.'../core/base.php');
+require_once(__DIR__.'/../core/base.php');
 
-//容器创建app类,执行并返回信息
-Container::get('app')->run();
+//运行App
+Container::get('core\\facade\\App')->run();

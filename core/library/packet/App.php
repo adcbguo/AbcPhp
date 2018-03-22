@@ -92,13 +92,18 @@ class App implements \ArrayAccess
     }
 
     /**
-     *
+     * 运行App
+     * @return void
      */
     public function run()
     {
         $this->initialize();
     }
 
+    /**
+     * 返回网页信息
+     * @return void
+     */
     public function send()
     {
 
