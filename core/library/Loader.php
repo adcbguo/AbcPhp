@@ -1,11 +1,10 @@
 <?php
+namespace core;
 /**
  * 加载类
  * User: 郭冠常
- * Date: 2018/3/9
- * Time: 19:22
+ * @package core
  */
-namespace core;
 class Loader
 {
     /**

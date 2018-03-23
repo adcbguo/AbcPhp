@@ -1,17 +1,17 @@
 <?php
-/**
- * 服务容器类
- * 使用反射创建类实例
- * 使用反射创建闭包实例
- * User: 郭冠常
- * Date: 2018/3/9
- * Time: 18:16
- */
+
 namespace core;
+
 use Closure;
 use ReflectionClass;
 use ReflectionFunction;
 use InvalidArgumentException;
+
+/**
+ * 服务容器类
+ * User: 郭冠常
+ * @package core
+ */
 class Container
 {
     /**

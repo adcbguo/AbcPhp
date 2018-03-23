@@ -1,15 +1,10 @@
 <?php
+namespace core;
 /**
  * 工厂类
- * 调用服务容器创建实例
- * 绑定类代理
- * 静态调用
  * User: 郭冠常
- * Date: 2018/3/9
- * Time: 18:07
+ * @package core
  */
-
-namespace core;
 class Facade
 {
     /**

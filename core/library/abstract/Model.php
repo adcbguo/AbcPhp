@@ -1,12 +1,12 @@
 <?php
+
+namespace core;
 /**
  * 框架基础模型文件
  * User: 郭冠常
- * Date: 2018/3/10
- * Time: 11:05
+ * @package core
  */
-namespace core;
-class Model
+abstract class Model
 {
     /**
      * 表名(不带前缀)

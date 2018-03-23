@@ -1,17 +1,19 @@
 <?php
-/**
- * 错误类
- * User: 郭冠常
- * Date: 2018/3/9
- * Time: 19:50
- */
+
 namespace core;
+
 use core\packet\exception\ErrorException;
 use core\packet\exception\Handle;
 use Closure;
 use core\packet\exception\ThrowableError;
 use Exception;
 use Throwable;
+
+/**
+ * 错误异常类
+ * User: 郭冠常
+ * @package core
+ */
 class Error
 {
     /**
@@ -23,7 +25,7 @@ class Error
         error_reporting(E_ALL);
         set_error_handler([__CLASS__, 'appError']);
         set_exception_handler([__CLASS__, 'appException']);
-        register_shutdown_function([__CLASS__,'appShutdown']);
+        register_shutdown_function([__CLASS__, 'appShutdown']);
     }
 
     /**

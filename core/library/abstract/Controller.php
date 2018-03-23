@@ -1,12 +1,12 @@
 <?php
+
+namespace core;
 /**
  * 框架基础控制器
  * User: 郭冠常
- * Date: 2018/3/10
- * Time: 10:52
+ * @package core
  */
-namespace core;
-class Controller
+abstract class Controller
 {
     /**
      * 返回网页数据
