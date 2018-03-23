@@ -1,11 +1,11 @@
 <?php
-/**
- * 配置工厂类
- * User: 郭冠常
- * Date: 2018/3/10
- * Time: 9:24
- */
+
 namespace core\packet;
+/**
+ * 配置实现类
+ * User: 郭冠常
+ * @package core\packet
+ */
 class Config
 {
     /**

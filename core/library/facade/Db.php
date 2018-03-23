@@ -1,12 +1,14 @@
 <?php
+
+namespace core\facade;
+
+use core\Facade;
+
 /**
  * 数据工厂类
  * User: 郭冠常
- * Date: 2018/3/9
- * Time: 19:15
+ * @package core\facade
  */
-namespace core\facade;
-use core\Facade;
 class Db extends Facade
 {
 

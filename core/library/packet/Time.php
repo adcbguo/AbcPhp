@@ -1,12 +1,12 @@
 <?php
 
 namespace core\packet;
+
 /**
- * 应用调度类
- * User: 郭冠常
+ * 时间实现类
  * @package core\packet
  */
-class Dispatch
+class Time
 {
 
 }

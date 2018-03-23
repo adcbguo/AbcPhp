@@ -1,12 +1,14 @@
 <?php
-/**
- * App类
- * User: 郭冠常
- * Date: 2018/3/10
- * Time: 10:00
- */
+
 namespace core\packet;
+
 use core\Container;
+
+/**
+ * 应用实现类
+ * User: 郭冠常
+ * @package core\packet
+ */
 class App implements \ArrayAccess
 {
 

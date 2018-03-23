@@ -1,14 +1,15 @@
 <?php
+
+namespace core\packet;
 /**
  * 响应类
  * User: 郭冠常
- * Date: 2018/3/10
- * Time: 12:18
+ * @package core\packet
  */
-namespace core\packet;
 class Response
 {
-    public function send(){
+    public function send()
+    {
         return '';
     }
 

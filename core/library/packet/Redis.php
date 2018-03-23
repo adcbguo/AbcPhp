@@ -1,12 +1,14 @@
 <?php
+
+namespace core\packet;
+
+use core\Container;
+
 /**
  * Redis缓存类
  * User: 郭冠常
- * Date: 2018/3/10
- * Time: 11:07
+ * @package core\packet
  */
-namespace core\packet;
-use core\Container;
 class Redis extends \Redis
 {
     /**

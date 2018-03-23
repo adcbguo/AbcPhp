@@ -1,15 +1,13 @@
 <?php
-
 namespace core\facade;
-
 use core\Facade;
 
 /**
- * Redis工厂类
- * User: 郭冠常
+ * 请求资源类
+ * User 郭冠常
  * @package core\facade
  */
-class Redis extends Facade
+class Request extends Facade
 {
 
 }

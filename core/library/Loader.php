@@ -80,7 +80,6 @@ class Loader
             return class_alias(self::$classAlias[$class], $class);
         }
         if ($file = self::findFile($class)) {
-            // Win环境严格区分大小写
             if (strpos(PHP_OS, 'WIN') !== false && pathinfo($file, PATHINFO_FILENAME) != pathinfo(realpath($file), PATHINFO_FILENAME)) {
                 return false;
             }

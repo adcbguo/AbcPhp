@@ -1,12 +1,13 @@
 <?php
 
+
 namespace core\packet;
+
 /**
- * 应用调度类
+ * 模型实现类
  * User: 郭冠常
- * @package core\packet
  */
-class Dispatch
+class Model
 {
 
 }

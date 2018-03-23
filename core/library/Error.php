@@ -6,7 +6,6 @@
  * Time: 19:50
  */
 namespace core;
-use core\facade\Config;
 use core\packet\exception\ErrorException;
 use core\packet\exception\Handle;
 use Closure;
