@@ -5,4 +5,8 @@
  * Date: 2018/3/10
  * Time: 10:31
  */
-return [];
+return [
+
+    //全局参数过滤
+    'default_filter' => '',
+];
