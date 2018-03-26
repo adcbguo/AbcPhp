@@ -11,19 +11,19 @@ class User extends Controller
 {
     /**
      * 用户登录
-     * @return string
+     * @return \core\packet\Response
      */
     public function login()
     {
-        return $this->send();
+        return $this->result()->send();
     }
 
     /**
      * 用户注册
-     * @return string
+     * @return \core\packet\Response
      */
     public function register()
     {
-        return $this->send();
+        return $this->result()->send();
     }
 }
