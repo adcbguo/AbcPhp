@@ -6,7 +6,11 @@
  * Time: 11:04
  */
 namespace app\mobie\model;
-class UserModel
-{
+use core\Model;
 
+class UserModel extends Model
+{
+    public function add(){
+
+    }
 }
