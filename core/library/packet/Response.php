@@ -70,7 +70,7 @@ class Response
             }
         }
         //发送内容
-        $this->sendContent();
+        $this->print();
         //提高页面响应
         if (function_exists('fastcgi_finish_request')) fastcgi_finish_request();
         return $this;
@@ -121,8 +121,9 @@ class Response
      */
     public function setDate($data = [], $type = '')
     {
+        $this->data = array_merge($this->data, $data);
         $this->setType(empty($type) ? $this->type : $type);
-        $this->content = json_encode($data, true);
+        $this->content = json_encode($this->data, true);
         return $this;
     }
 
@@ -136,11 +137,36 @@ class Response
     }
 
     /**
-     * 发送数据到客户端
+     * 打印输出
      * @return void
      */
-    private function sendContent()
+    private function print()
     {
         echo $this->content;
+    }
+
+    /**
+     * 组装错误跟踪信息
+     * @param array $trace
+     * @return $this
+     */
+    public function setTrace($trace)
+    {
+        $parseTrace = '%FILE%%LINE%%CLASS%%TYPE%%FUNCTION%';
+        $traceArr = [];
+        foreach ($trace as $tr) {
+            array_push($traceArr, str_replace(
+                ['%FILE%', '%CLASS%', '%TYPE%', '%FUNCTION%', '%LINE%'],
+                [
+                    !isset($tr['file']) ? '' : "{$tr['file']} ",
+                    !isset($tr['class']) ? '' : $tr['class'],
+                    !isset($tr['type']) ? '' : $tr['type'],
+                    $tr['function'],
+                    !isset($tr['line']) ? '' : "{$tr['line']} ",
+                ],
+                $parseTrace));
+        }
+        $this->data['trace'] = $traceArr;
+        return $this;
     }
 }

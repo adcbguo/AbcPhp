@@ -9,6 +9,7 @@ namespace core\packet\exception;
 use core\Container;
 use core\packet\Response;
 use Exception;
+use Throwable;
 use Closure;
 
 class Handle
@@ -63,7 +64,7 @@ class Handle
 
     /**
      * 处理异常跟踪
-     * @param $exception
+     * @param Exception|Throwable $exception
      * @return Response
      */
     public function render($exception)
@@ -81,7 +82,7 @@ class Handle
 
     /**
      * 处理Http异常
-     * @param $exception
+     * @param Exception|Throwable $exception
      * @return Response
      */
     public function renderHttpException($exception)
@@ -90,13 +91,15 @@ class Handle
     }
 
     /**
-     * 奖异常打印到页面
-     * @param $exception
+     * 将异常打印到页面
+     * @param Exception|Throwable $exception
      * @return Response
      */
     public function convertExceptionToResponse($exception)
     {
-        return Container::get('core\\packet\\Response')->create();
+        return Container::get('core\\packet\\Response')
+            ->setTrace($exception->getTrace())
+            ->setDate(['code' => 10010, 'error' => $exception->getMessage()]);
     }
 
     /**

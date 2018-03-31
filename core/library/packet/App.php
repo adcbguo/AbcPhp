@@ -2,7 +2,9 @@
 
 namespace core\packet;
 
+use app\mobie\model\UserM;
 use core\Container;
+use core\Loader;
 
 /**
  * 应用实现类
@@ -80,7 +82,7 @@ class App implements \ArrayAccess
      */
     public function __construct($appPath = '')
     {
-        $this->appPath = $appPath ?: __DIR__ . '../../../apps/';
+        $this->appPath = $appPath ?: __DIR__ . '/../../../apps/';
         $this->container = Container::getInstance();
     }
 
@@ -113,6 +115,7 @@ class App implements \ArrayAccess
 
     /**
      * 初始化应用
+     * @return void
      */
     public function initialize()
     {
@@ -121,6 +124,9 @@ class App implements \ArrayAccess
         $this->rootPath = dirname(realpath($this->appPath)) . '/';
         $this->runtimePath = $this->rootPath . 'runtime/';
         $this->configPath = $this->rootPath . 'config/';
+
+        //应用命名空间
+        Loader::addNamespace($this->namespace, $this->appPath);
     }
 
     /**

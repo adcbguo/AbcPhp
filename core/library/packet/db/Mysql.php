@@ -6,7 +6,7 @@
  * Time: 19:21
  */
 namespace core\packet\db;
-class Mysql
+class Mysql extends Builder
 {
 
 }
