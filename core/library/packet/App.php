@@ -2,9 +2,10 @@
 
 namespace core\packet;
 
-use app\mobie\model\UserM;
 use core\Container;
 use core\Loader;
+use core\facade\Request;
+use core\facade\Response;
 
 /**
  * 应用实现类
@@ -53,6 +54,12 @@ class App implements \ArrayAccess
     protected $appPath;
 
     /**
+     * 框架目录
+     * @var string
+     */
+    protected $corePath;
+
+    /**
      * 运行时目录
      * @var string
      */
@@ -83,7 +90,13 @@ class App implements \ArrayAccess
     public function __construct($appPath = '')
     {
         $this->appPath = $appPath ?: __DIR__ . '/../../../apps/';
+        $this->corePath = $this->appPath . '../core/library/';
         $this->container = Container::getInstance();
+        $this->beginTime = microtime(true);
+        $this->beginMem = memory_get_usage();
+        $this->rootPath = dirname(realpath($this->appPath)) . '/';
+        $this->runtimePath = $this->rootPath . 'runtime/';
+        $this->configPath = $this->rootPath . 'config/';
     }
 
     /**
@@ -102,15 +115,14 @@ class App implements \ArrayAccess
     public function run()
     {
         $this->initialize();
-    }
 
-    /**
-     * 返回网页信息
-     * @return void
-     */
-    public function send()
-    {
 
+
+        //使用调度执行应用
+
+
+        //返回数据
+        Response::send();
     }
 
     /**
@@ -119,14 +131,16 @@ class App implements \ArrayAccess
      */
     public function initialize()
     {
-        $this->beginTime = microtime(true);
-        $this->beginMem = memory_get_usage();
-        $this->rootPath = dirname(realpath($this->appPath)) . '/';
-        $this->runtimePath = $this->rootPath . 'runtime/';
-        $this->configPath = $this->rootPath . 'config/';
-
         //应用命名空间
         Loader::addNamespace($this->namespace, $this->appPath);
+
+        //加载框架帮助函数
+        include $this->corePath . 'helper.php';
+
+
+        dump(Request::instance());
+
+        dump(Request::class);
     }
 
     /**

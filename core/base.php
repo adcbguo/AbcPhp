@@ -5,12 +5,15 @@
  * Date: 2018/3/9
  * Time: 18:06
  */
+
 namespace core;
+
 use core\packet\Config;
 use core\packet\Db;
 use core\packet\Log;
 use core\packet\App;
 use core\packet\Page;
+use core\packet\Response;
 
 // 载入Loader类
 require __DIR__ . '/library/Loader.php';
@@ -27,7 +30,8 @@ Container::getInstance()->bind([
     'config' => Config::class,
     'db' => Db::class,
     'log' => Log::class,
-    'page' => Page::class
+    'page' => Page::class,
+    'response' => Response::class
 ]);
 
 //绑定核心类的静态代理,方便使用
@@ -36,7 +40,8 @@ Facade::bind([
     facade\Config::class => Config::class,
     facade\Log::class => Log::class,
     facade\Db::class => Db::class,
-    facade\Page::class => Page::class
+    facade\Page::class => Page::class,
+    facade\Response::class => Response::class,
 ]);
 
 //加载composer包文件

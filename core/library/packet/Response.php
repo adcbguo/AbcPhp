@@ -69,10 +69,18 @@ class Response
                 header($name . (!is_null($value) ? ':' . $value : ''));
             }
         }
+
+        var_dump($this->data);
+
+        //设置打印内容
+        $this->content = json_encode($this->data, true);
+
         //发送内容
         $this->print();
+
         //提高页面响应
         if (function_exists('fastcgi_finish_request')) fastcgi_finish_request();
+
         return $this;
     }
 
@@ -123,7 +131,6 @@ class Response
     {
         $this->data = array_merge($this->data, $data);
         $this->setType(empty($type) ? $this->type : $type);
-        $this->content = json_encode($this->data, true);
         return $this;
     }
 
@@ -168,5 +175,17 @@ class Response
         }
         $this->data['trace'] = $traceArr;
         return $this;
+    }
+
+    /**
+     * 打印调试信息
+     * @param $var
+     * @return void
+     */
+    public function setDump($var)
+    {
+        isset($this->data['dump']) ?: $this->data['dump'] = [];
+        array_push($this->data['dump'], str_replace("\n", '', var_export($var, true)));
+        var_dump($this->data);
     }
 }

@@ -13,6 +13,8 @@ use core\Facade;
  * @method \core\packet\Response setHeader($name, $value = null) static 设置header头
  * @method array|string|null getHeader($name = '') static 获取header头
  * @method string|null getContent() static 获取发送到客户端内容
+ * @method \core\packet\Response setTrace($trace) static 设置跟踪响应
+ * @method void setDump($var) static 发送调试信息
  */
 class Response extends Facade
 {

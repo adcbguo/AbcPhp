@@ -11,6 +11,6 @@ use core\abstracts\Model;
 class UserM extends Model
 {
     public function add(){
-        
+
     }
 }
