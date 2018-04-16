@@ -136,6 +136,15 @@ class App implements \ArrayAccess
     }
 
     /**
+     * 获取配置目录
+     * @return string
+     */
+    public function getConfigPath()
+    {
+        return $this->configPath;
+    }
+
+    /**
      * 判断标识或类是否在容器
      * @param mixed $key
      * @return bool
