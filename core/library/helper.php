@@ -4,12 +4,14 @@
  * User: 郭冠常
  */
 
+use core\facade\Response;
+
 /**
- * 返回打印信息
+ * 响应打印信息
  * @param $var
  * @return void
  */
 function dump($var)
 {
-    \core\facade\Response::setDump($var);
+    Response::setDump($var);
 }

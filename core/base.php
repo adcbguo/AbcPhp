@@ -24,6 +24,9 @@ Loader::register();
 //注册异常处理
 Error::register();
 
+//加载框架帮助函数
+require __DIR__ . '/library/helper.php';
+
 //绑定核心类到容器,方便后面直接调用
 Container::getInstance()->bind([
     'app' => App::class,

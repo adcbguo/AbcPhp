@@ -17,7 +17,7 @@ class Facade
      * 是否单例
      * @var bool
      */
-    protected static $alwaysNewInstance = true;
+    protected static $alwaysNewInstance = false;
 
     /**
      * 创建工厂实例

@@ -1,6 +1,8 @@
 <?php
 
 namespace core\packet;
+use core\statics\Str;
+
 /**
  * 响应类
  * User: 郭冠常
@@ -12,7 +14,7 @@ class Response
      * 响应数据
      * @var array
      */
-    protected $data = [];
+    protected $data = ['code' => 200, 'error' => ''];
 
     /**
      * 响应类型
@@ -27,7 +29,7 @@ class Response
     protected $charset = 'utf-8';
 
     /**
-     * 状态码
+     * 网页状态码
      * @var integer
      */
     protected $code = 200;
@@ -69,8 +71,6 @@ class Response
                 header($name . (!is_null($value) ? ':' . $value : ''));
             }
         }
-
-        var_dump($this->data);
 
         //设置打印内容
         $this->content = json_encode($this->data, true);
@@ -157,23 +157,11 @@ class Response
      * @param array $trace
      * @return $this
      */
-    public function setTrace($trace)
+    public function setTrace($trace, $file, $line)
     {
-        $parseTrace = '%FILE%%LINE%%CLASS%%TYPE%%FUNCTION%';
-        $traceArr = [];
-        foreach ($trace as $tr) {
-            array_push($traceArr, str_replace(
-                ['%FILE%', '%CLASS%', '%TYPE%', '%FUNCTION%', '%LINE%'],
-                [
-                    !isset($tr['file']) ? '' : "{$tr['file']} ",
-                    !isset($tr['class']) ? '' : $tr['class'],
-                    !isset($tr['type']) ? '' : $tr['type'],
-                    $tr['function'],
-                    !isset($tr['line']) ? '' : "{$tr['line']} ",
-                ],
-                $parseTrace));
-        }
-        $this->data['trace'] = $traceArr;
+        $this->data['file'] = $file;
+        $this->data['line'] = $line;
+        $this->data['trace'] = Str::parseTrace($trace);
         return $this;
     }
 
@@ -185,7 +173,7 @@ class Response
     public function setDump($var)
     {
         isset($this->data['dump']) ?: $this->data['dump'] = [];
-        array_push($this->data['dump'], str_replace("\n", '', var_export($var, true)));
-        var_dump($this->data);
+        is_string($var) ?: $var = var_export($var, true);
+        array_push($this->data['dump'], $var);
     }
 }

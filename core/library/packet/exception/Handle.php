@@ -18,7 +18,7 @@ class Handle
     protected $render;
 
     /**
-     * 忽略的类
+     * 忽略的类(不记录日志)
      * @var array
      */
     protected $ignoreReport = [
@@ -33,21 +33,13 @@ class Handle
     public function report(Exception $exception)
     {
         if (!$this->isIgnoreReport($exception)) {
-            if (Container::get('core\\packet\\App')->isDebug()) {
-                $data = [
-                    'file' => $exception->getFile(),
-                    'line' => $exception->getLine(),
-                    'message' => $exception->getMessage(),
-                    'code' => $exception->getCode()
-                ];
-                $log = "[{$data['code']}][{$data['message']}][{$data['file']}][{$data['line']}]";
-            } else {
-                $data = [
-                    'message' => $exception->getMessage(),
-                    'code' => $exception->getCode()
-                ];
-                $log = "[{$data['code']}][{$data['message']}]";
-            }
+            $data = [
+                'file' => $exception->getFile(),
+                'line' => $exception->getLine(),
+                'message' => $exception->getMessage(),
+                'code' => $exception->getCode()
+            ];
+            $log = "[{$data['code']}][{$data['message']}][{$data['file']}][{$data['line']}]";
             Container::get('core\\packet\\Log')->record($log, 'error');
         }
     }
@@ -98,7 +90,7 @@ class Handle
     public function convertExceptionToResponse($exception)
     {
         return Container::get('core\\packet\\Response')
-            ->setTrace($exception->getTrace())
+            ->setTrace($exception->getTrace(), $exception->getFile(), $exception->getLine())
             ->setDate(['code' => 10010, 'error' => $exception->getMessage()]);
     }
 
@@ -107,10 +99,11 @@ class Handle
      * @param Exception $exception
      * @return bool
      */
-    public function isIgnoreReport(Exception $exception){
+    public function isIgnoreReport(Exception $exception)
+    {
         foreach ($this->ignoreReport as $class) {
-            if($exception instanceof $class){
-                return false;
+            if ($exception instanceof $class) {
+                return true;
             }
         }
         return false;

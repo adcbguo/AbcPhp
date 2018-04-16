@@ -133,14 +133,6 @@ class App implements \ArrayAccess
     {
         //应用命名空间
         Loader::addNamespace($this->namespace, $this->appPath);
-
-        //加载框架帮助函数
-        include $this->corePath . 'helper.php';
-
-
-        dump(Request::instance());
-
-        dump(Request::class);
     }
 
     /**

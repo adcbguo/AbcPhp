@@ -57,8 +57,10 @@ class Error
         if (!$exception instanceof Exception) {
             $exception = new ThrowableError($exception);
         }
+
         //记录错误
         self::getExceptionHandler()->report($exception);
+
         //处理异常跟踪
         self::getExceptionHandler()->render($exception)->send();
     }
@@ -80,8 +82,8 @@ class Error
     {
         static $handle;
         if (!$handle) {
-            $class = Container::get('core\\packet\\Config')->get('exception_handle');
-            if ($class && is_string($class) && class_exists($class) && is_subclass_of($class, '\\core\\packet\\exception\\Handle')) {
+            $class = '\\core\\packet\\exception\\Handle';
+            if ($class && is_string($class) && class_exists($class)) {
                 $handle = new $class;
             } else {
                 $handle = new Handle();
