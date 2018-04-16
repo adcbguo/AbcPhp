@@ -173,7 +173,7 @@ class Response
     public function setDump($var)
     {
         isset($this->data['dump']) ?: $this->data['dump'] = [];
-        is_string($var) ?: $var = var_export($var, true);
+        //is_string($var) ?: $var = var_export($var, true);
         array_push($this->data['dump'], $var);
     }
 }

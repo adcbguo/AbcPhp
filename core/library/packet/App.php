@@ -6,7 +6,7 @@ use core\Container;
 use core\Loader;
 use core\facade\Request;
 use core\facade\Response;
-
+use core\facade\Config;
 /**
  * 应用实现类
  * User: 郭冠常
@@ -119,6 +119,8 @@ class App implements \ArrayAccess
 
 
         //使用调度执行应用
+        dump(Config::get('database'));
+        dump(Response::class);
 
 
         //返回数据
