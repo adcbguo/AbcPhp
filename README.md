@@ -43,4 +43,4 @@
 
 本项目包含的第三方源码和二进制文件之版权信息另行标注。
 
-更多细节参阅 [LICENSE.txt](LICENSE.txt)
+更多细节参阅 [https://github.com/adcbguo/AbcPhp/blob/master/LICENSE](LICENSE.txt)
