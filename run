@@ -1,2 +1,16 @@
 #!/usr/bin/env php
 <?php
+
+namespace core;
+
+use core\facade\App;
+use core\facade\Console;
+
+//引用框架基础文件
+require_once(__DIR__ . '/core/base.php');
+
+//初始化应用
+App::initialize();
+
+//控制台初始化
+Console::init();
