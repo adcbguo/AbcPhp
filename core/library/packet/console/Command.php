@@ -50,7 +50,11 @@ class Command
         return $this->console;
     }
 
-
+    /**
+     *
+     * @param Input $input
+     * @param Output $output
+     */
     public function run(Input $input, Output $output)
     {
         $this->input = $input;

@@ -82,7 +82,7 @@ class Error
     {
         static $handle;
         if (!$handle) {
-            $class = '\\core\\packet\\exception\\Handle';
+            $class = Container::get('\\core\\packet\\Config')->get('app')['exception_handle'];
             if ($class && is_string($class) && class_exists($class)) {
                 $handle = new $class;
             } else {
