@@ -1,12 +1,9 @@
 <?php
-/**
- * 用户控制器
- * User: 郭冠常
- * Date: 2018/3/10
- * Time: 10:51
- */
+
 namespace app\mobie\controller;
-use core\Controller;
+
+use core\abstracts\Controller;
+
 class User extends Controller
 {
     /**

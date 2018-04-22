@@ -1,7 +1,6 @@
 <?php
-
 namespace app\api\controller;
-class Index
+class User
 {
 
 }
