@@ -22,6 +22,4 @@ return [
 
     //默认访问操作名
     'url_default_action' => 'index',
-
-
 ];
