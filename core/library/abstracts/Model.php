@@ -62,7 +62,7 @@ abstract class Model
      */
     public static function __callStatic($name, $arguments)
     {
-        if (false !== strpos($name, 'C')) {
+        if (false !== strpos($name, 'M')) {
             $method = substr($name, 1);
             return call_user_func_array([self::instance(), $method], $arguments);
         } else {
