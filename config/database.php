@@ -8,7 +8,7 @@
 return [
 
     //数据库类型
-    'drive' => 'mysql',
+    'driver' => 'mysql',
 
     //数据库地址
     'host' => '127.0.0.1',
@@ -17,17 +17,20 @@ return [
     'port' => '3306',
 
     //数据库账户
-    'user' => 'root',
+    'username' => 'root',
 
     //数据库密码
-    'pass' => 'root',
+    'password' => 'root',
 
     //库名称
-    'base' => 'test',
+    'database' => 'test',
 
     //数据库编码
     'charset' => 'utf8',
 
     //表前缀
     'prefix' => '',
+
+    //字符集
+    'collation' => 'utf8_unicode_ci',
 ];

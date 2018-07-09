@@ -1,12 +1,15 @@
 <?php
 
 namespace core\packet;
+
+use Illuminate\Support\Facades\DB as IlluminateDb;
+
 /**
- * DB实现类
+ * DB 使用 illuminate/database
  * User: 郭冠常
  * @package core\packet
  */
-class Db
+class Db extends IlluminateDb
 {
 
 }

@@ -2,11 +2,15 @@
 
 namespace core\packet;
 
+use app\api\model\User;
+use core\abstracts\Model;
 use core\Container;
 use core\Loader;
 use core\facade\Request;
 use core\facade\Response;
 use core\facade\Config;
+use Illuminate\Database\Capsule\Manager;
+
 /**
  * 应用实现类
  * User: 郭冠常
@@ -109,6 +113,17 @@ class App implements \ArrayAccess
     }
 
     /**
+     * 初始化ORM模型
+     * @return void
+     */
+    public function withEloquent()
+    {
+        $capsule = new Manager;
+        $capsule->addConnection(config::get('database'));
+        $capsule->bootEloquent();
+    }
+
+    /**
      * 运行App
      * @return void
      */
@@ -117,10 +132,21 @@ class App implements \ArrayAccess
         $this->initialize();
 
 
+//        $Capsule = new Manager;
+//        $Capsule->addConnection(config::get('database'));
+//
+//
+//
+////        $Capsule->setEventDispatcher(new Dis)
+//
+//
+//        $Capsule->setAsGlobal();  //this is important
+////        $Capsule->bootEloquent();
+//
 
-        //使用调度执行应用
-        dump(Config::get('database'));
-        dump(Response::class);
+        $this->withEloquent();
+        dump(User::where(['aa'=>1])->select());
+        dump();
 
 
         //返回数据
